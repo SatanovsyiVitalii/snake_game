@@ -1,0 +1,27 @@
+:root {
+  --grid-size: 20;
+  --cell-size: 20px;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+}
+
+.grid-row {
+  display: contents;
+}
+
+.grid-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid black;
+}
+
+.grid-cell.snake {
+  background-color: green;
+}
+
+.grid-cell.food {
+  background-color: red;
+}
