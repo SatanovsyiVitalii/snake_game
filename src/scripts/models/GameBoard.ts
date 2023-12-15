@@ -1,3 +1,4 @@
+import { Snake } from '../models/Snake';
 import { getCssVariableValueAsNumber } from '../utils/cssVariables';
 type CellState = 'empty' | 'snake' | 'food';
 
@@ -56,5 +57,25 @@ export class GameBoard {
 
   public getHeight(): number {
     return this.height;
+  }
+
+  public updateWithSnake(snake: Snake): void {
+    this.clearSnake();
+
+    for (const segment of snake.getBody()) {
+      if (this.isValidPosition(segment.x, segment.y)) {
+        this.setCellState(segment.x, segment.y, 'snake');
+      }
+    }
+  }
+
+  private clearSnake(): void {
+    for (let row = 0; row < this.height; row++) {
+      for (let col = 0; col < this.width; col++) {
+        if (this.grid[row][col] === 'snake') {
+          this.grid[row][col] = 'empty';
+        }
+      }
+    }
   }
 }
